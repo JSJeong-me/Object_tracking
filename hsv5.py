@@ -2,13 +2,13 @@ import sys
 import numpy as np
 import cv2
 
-frame = cv2.imread('078.png')
+frame = cv2.imread('032.png')
 
-hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
 # Every color except white & Green
-low = np.array([15, 52, 72]) #  0, 42, 0 - white
-high = np.array([179, 255, 255])
+low = np.array([195, 159, 28]) #  0, 42, 0 - white
+high = np.array([244, 231, 94])
 mask = cv2.inRange(hsv_frame, low, high)
 result = cv2.bitwise_and(frame, frame, mask=mask)
 
@@ -22,7 +22,7 @@ banana = cv2.bitwise_and(frame, frame, mask=banana_mask)
 
 
 cv2.imshow('Image', frame)
-#cv2.imshow('Banana mask', banana)
+cv2.imshow('Banana mask', banana)
 cv2.imshow('Result', result)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
